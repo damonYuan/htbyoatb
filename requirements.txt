@@ -1,0 +1,5 @@
+backtrader==1.9.76.123
+tushare==1.2.60
+pandas==1.1.2
+python-dotenv==0.14.0
+futu-api==3.25.0
