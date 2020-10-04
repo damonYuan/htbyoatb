@@ -9,6 +9,12 @@ class TushareDatafeed:
         self.start = start
         self.end = end
 
+    def get_delisted_stocks(self):
+        pro = ts.pro_api()
+        stocks = pro.stock_basic(exchange='', list_status='D', fields='ts_code,symbol,name,list_date,delist_date')
+        df = stocks[(stocks['list_date'] < self.end) & (stocks['delist_date'] > self.start)]
+        print(df)
+
     def get_data(self):
         df = ts.pro_bar(ts_code=self.code,
                         adj='qfq',
