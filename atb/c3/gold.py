@@ -174,8 +174,9 @@ class Gold:
                                    fromdate=pd.to_datetime(self.start),
                                    todate=pd.to_datetime(self.end)), name='gdx')
         cerebro.addstrategy(self.analyze())
-        cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='SharpeRatio')
+        cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='SharpeRatio', riskfreerate=0.0)
         cerebro.addanalyzer(bt.analyzers.DrawDown, _name='DW')
+        cerebro.addanalyzer(bt.analyzers.Returns, _name='Returns')
         cerebro.broker.setcash(100)
         cerebro.broker.setcommission(commission=0)
         cerebro.addsizer(bt.sizers.FixedSize, stake=500)
@@ -183,6 +184,7 @@ class Gold:
         strat = results[0]
         print('夏普比率:', strat.analyzers.SharpeRatio.get_analysis())
         print('回撤指标:', strat.analyzers.DW.get_analysis())
+        print('回报:', strat.analyzers.Returns.get_analysis())
 
         # plt.rcParams['font.sans-serif'] = ['SimHei']
         # plt.rcParams['axes.unicode_minus'] = False

@@ -5,6 +5,7 @@ from atb.c3.tushare_datafeed import TushareDatafeed
 from atb.c3.quandl_datafeed import QuandlDatafeed
 from atb.c3.futu_datafeed import FutuDatafeed
 from atb.c3.yahoo_datafeed import YahooDatafeed
+from atb.c3.mean_revert import MeanRevert
 from atb.c3.gold import Gold
 from datetime import datetime
 
@@ -33,9 +34,9 @@ def main():
         elif cmd_list[1] == 'gold':
             gold = Gold()
             gold.train()
-            # gold.collect()
-            # gold.prepare()
-            # gold.analyze()
+        elif cmd_list[1] == 'mr':
+            mr = MeanRevert()
+            mr.collect()
     elif cmd_list[0] == 'quit':
         exit(0)
 
