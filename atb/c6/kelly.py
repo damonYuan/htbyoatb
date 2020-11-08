@@ -62,7 +62,7 @@ def main():
 
     log.info("Kelly Criterion calculation")
 
-    target_leverage = 1
+    target_leverage = 1.1
     equity_value = 398760
 
     # Calculate the Kelly Optimal leverages
