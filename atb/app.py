@@ -7,6 +7,7 @@ from atb.c3.futu_datafeed import FutuDatafeed
 from atb.c3.yahoo_datafeed import YahooDatafeed
 from atb.c3.mean_revert import MeanRevert
 from atb.c3.gold import Gold
+from atb.c5.pts import runstrategy
 from datetime import datetime
 
 
@@ -37,9 +38,11 @@ def main():
         elif cmd_list[1] == 'mr':
             mr = MeanRevert()
             mr.collect()
+    elif cmd_list[0] == 'c5':
+        if cmd_list[1] == 'pt':
+            runstrategy()
     elif cmd_list[0] == 'quit':
         exit(0)
-
 
 
 if __name__ == '__main__':
