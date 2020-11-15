@@ -62,13 +62,13 @@ def main():
 
     log.info("Kelly Criterion calculation")
 
-    target_leverage = 1.1
-    equity_value = 398760
 
     # Calculate the Kelly Optimal leverages
     try:
+        investment = [21000, 144600-8955, 35820-900, 15100+100]
         leverages = calc_kelly_leverages(
             ['0175.HK', '0981.HK', '1810.HK', '2800.HK', '6030.HK', '9618.HK', '9633.HK', '9988.HK'],
+            # ['0175.HK', '0981.HK', '9618.HK', '9633.HK'],
             datetime.date(datetime.now() - timedelta(6 * 30)),
             datetime.date(datetime.now()),
             0.0047)  # http://www.market-risk-premia.com/hk.html
@@ -82,16 +82,14 @@ def main():
         sum_leverage = 0
         for symbol, leverage in leverages.items():
             # We don't short, so only calculate with those leverage > 0
-            if leverage > 0:
-                sum_leverage += leverage
+            sum_leverage += leverage
 
         log.info(f"Sum leverage: {sum_leverage}")
 
         for symbol, leverage in leverages.items():
-            l = 0 if leverage < 0 else leverage / sum_leverage * target_leverage
-            log.info(f"  {symbol}: {l:.2f}, HKD {l*equity_value:.2f}")
+            log.info(f"  {symbol}: {leverage:.2f}")
 
-        log.info(f"Target leverage: {target_leverage}, Equities Value: HKD {equity_value}")
+        # log.info(f"Max leverage: {maximum_leverage}, Equities Value: HKD {equity_value}")
 
 
 if __name__ == '__main__':
